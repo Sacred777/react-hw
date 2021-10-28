@@ -2,6 +2,7 @@ import React from 'react';
 import { EColors, Text } from '../../../../Text';
 import styles from './menuitemslist.css';
 import { BlockIcon, WarningIcon, CommentIcon, ShareIcon, SaveIcon } from '../../../../Icons';
+import { EIcons, Icon } from '../../../../Icon';
 
 interface IMenuItemsListProps {
   postId: string;
@@ -11,7 +12,8 @@ export function MenuItemsList({ postId }: IMenuItemsListProps) {
   return (
     <ul className={styles.menuItemsList}>
       <li className={styles.menuItem} onClick={() => console.log(postId)}>
-        <CommentIcon />
+        {/* <CommentIcon /> */}
+        <Icon name={EIcons.block} size={16} />
         <Text size={12} color={EColors.grey99}>Комментарии</Text>
       </li>
 
