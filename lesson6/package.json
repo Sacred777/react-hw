@@ -18,9 +18,11 @@
   "license": "ISC",
   "devDependencies": {
     "@hot-loader/react-dom": "^17.0.1",
+    "@types/classnames": "^2.3.1",
     "@types/jest": "^27.0.1",
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9",
+    "classnames": "^2.3.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.2",
     "enzyme": "^3.11.0",
@@ -43,7 +45,6 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "classnames": "^2.2.6",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "react": "^17.0.1",
