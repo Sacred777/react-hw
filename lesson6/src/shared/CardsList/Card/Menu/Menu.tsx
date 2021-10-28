@@ -36,9 +36,6 @@ export function Menu() {
           </button>
         </div>
       </Dropdown>
-      {/* <Dropdown button={button}> */}
-        {/* <MenuList list={LIST.map(merge({ onClick: () => {console.log('click') } }))} /> */}
-      {/* </Dropdown> */}
     </div>
   );
 }
