@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './icon.css';
 import classNames from 'classnames';
-import { BlockIcon, WarningIcon, CommentIcon, ShareIcon, SaveIcon } from '../../shared/Icons';
+import * as icons from '../../shared/Icons';
 
 export enum EIcons {
   block   = 'BlockIcon',
@@ -10,14 +10,6 @@ export enum EIcons {
   share   = 'ShareIcon',
   warning = 'WarningIcon',
 }
-
-// const icons = {
-//   block: BlockIcon,
-//   comment: CommentIcon,
-//   save: SaveIcon,
-//   share: ShareIcon,
-//   warning: WarningIcon,
-// }
 
 type ISizes = 12 | 14 | 16;
 
@@ -36,9 +28,11 @@ export function Icon( props: IIconProps ) {
     styles[`i${size}`],
   )
 
-  const IconComponent: any = name;
+  const IconComponent = icons[name];
 
   return (
-    <IconComponent className={ classes } />
+    <span  className={ classes }>
+      <IconComponent />
+    </span>
   );
 }
