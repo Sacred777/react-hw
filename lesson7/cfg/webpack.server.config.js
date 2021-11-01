@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeEXternals =  require('webpack-node-externals');
+const { DefinePlugin } = require('webpack');
 const NODE_ENV = process.env.NODE_ENV;
 const GLOBAL_CSS_REGEXP = /\.global\.css$/; // все глобальные файлы будут заканчиваться на global.css
 
@@ -45,5 +46,6 @@ module.exports = {
   },
   optimization: {
     minimize: false,
-  }
+  },
+  plugins: [ new DefinePlugin({ 'process.env.ClIENT_ID': `'${process.env.ClIENT_ID}'` }) ]
 };

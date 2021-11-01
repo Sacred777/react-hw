@@ -2,9 +2,11 @@ const path = require('path');
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV == 'development';
 const IS_PROD = NODE_ENV == 'production';
-const { HotModuleReplacementPlugin } = require('webpack');
+const { HotModuleReplacementPlugin, DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const GLOBAL_CSS_REGEXP = /\.global\.css$/; // все глобальные файлы будут заканчиваться на global.css
+const DEV_PLUGINS = [ new CleanWebpackPlugin(), new HotModuleReplacementPlugin() ];
+const COMMON_PLUGINS = [ new DefinePlugin({ 'process.env.ClIENT_ID': `'${process.env.ClIENT_ID}'` }) ]; // переменная с токеном из package.json `'${process.env.ClIENT_ID}'`
 
 function setupDevtool() {
   if (IS_DEV) return 'eval';
@@ -64,9 +66,5 @@ module.exports = {
     hot: IS_DEV
   },
   devtool: setupDevtool(),
-  plugins: IS_DEV
-  ? [
-      new CleanWebpackPlugin(),
-      new HotModuleReplacementPlugin(),
-    ] : [],
+  plugins: IS_DEV ? DEV_PLUGINS.concat(COMMON_PLUGINS) : COMMON_PLUGINS
 };
