@@ -47,7 +47,9 @@ export function Icon( props: IIconProps ) {
     { [styles[`d${desktopSize}`]]: desktopSize},
   );
 
+  const IconComponent = icons[name];
+
   return (
-    icons[name]( {className: classes} )
+    IconComponent( {className: classes} )
   );
 }
