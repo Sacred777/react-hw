@@ -9,9 +9,9 @@
   align-items: center;
 }
 
-/* .menuItem > svg + span {
+.menuItem > svg + span {
   margin-left: 7px;
-} */
+}
 
 .menuItem span:first-child {
   margin-right: 6px;
