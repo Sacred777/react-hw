@@ -1,20 +1,17 @@
-import React from "react";
+import React, { Children } from "react";
 import { usePostData } from "../../hooks/usePostData";
 
 export interface IPostContextData {
-  name?: string;
-  iconImg?: string;
+  postData?: [];
 }
 
 export const postContext = React.createContext<IPostContextData>({});
 
 export function PostContextProvider({children}: {children: React.ReactNode}) {
-  console.log('PostContextProvider');
-
-  const [data] = usePostData();
+  const [postData] = usePostData();
 
   return (
-    <postContext.Provider value={data}>
+    <postContext.Provider value={postData}>
       {children}
     </postContext.Provider>
   )

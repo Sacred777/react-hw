@@ -1,7 +1,13 @@
 import React from 'react';
 import styles from './textcounter.css';
 
-export function TextCounter() {
+interface ITextCounterProps {
+  author: string;
+  avatar: string;
+  title: string;
+}
+
+export function TextCounter({ author, avatar, title }: ITextCounterProps) {
   return (
     <div className={styles.textContent}>
         <div className={styles.metaData}>
@@ -19,7 +25,8 @@ export function TextCounter() {
         </div>
         <h2 className={styles.title}>
           <a href="#post-url" className={styles.postLink}>
-            Следует отметить, что новая модель организационной деятельности поможет
+            {/*Следует отметить, что новая модель организационной деятельности поможет*/}
+            {title}
           </a>
         </h2>
       </div>
