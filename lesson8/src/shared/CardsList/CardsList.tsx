@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { Card } from './Card';
+import {Card} from './Card';
 import styles from './cardslist.css';
 import {postContext} from "../context/postContext";
 
@@ -8,10 +8,14 @@ export function CardsList() {
 
   //TODO вместо индекс - случайную строку из функции
   const postsList = postData.map((post, index) => {
+    const { data } = post;
+
+    console.log(data);
+
     return (
       <Card
        key={index}
-       itemData={post}
+       itemData={data}
       />
     );
   });

@@ -10,7 +10,7 @@ export function usePostData() {
   const [data, setData] = useState<IPostData>({});
 
   useEffect(() => {
-    axios.get('https:/www.reddit.com/r/popular/best.json?limit=1&sr_detail=true')
+    axios.get('https:/www.reddit.com/r/popular/best.json?limit=7&sr_detail=true')
         .then((resp) => {
         const postData = resp.data.data.children;
         // console.log('postData');
