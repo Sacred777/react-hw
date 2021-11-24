@@ -2,19 +2,19 @@ import React, {useContext} from 'react';
 import {Card} from './Card';
 import styles from './cardslist.css';
 import {postContext} from "../context/postContext";
+import { generateRandomString } from '../../utils/js/generateRandomIndex'
 
 export function CardsList() {
   const { postData = [] } = useContext(postContext);
 
   //TODO вместо индекс - случайную строку из функции
-  const postsList = postData.map((post, index) => {
+  const postsList = postData.map((post) => {
     const { data } = post;
-
-    console.log(data);
+    const id = generateRandomString();
 
     return (
       <Card
-       key={index}
+       key={id}
        itemData={data}
       />
     );

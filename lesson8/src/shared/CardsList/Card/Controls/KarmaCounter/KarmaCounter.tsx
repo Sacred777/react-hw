@@ -9,7 +9,6 @@ interface IKarmaCounterProps {
 export function KarmaCounter({ score }: IKarmaCounterProps ) {
 
   const karmaValue = score ? getKarmaValue(score) : '';
-  console.log(score);
 
   return (
     <div className={styles.karmaCounter}>
