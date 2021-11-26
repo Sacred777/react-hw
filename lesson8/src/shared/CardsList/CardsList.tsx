@@ -7,7 +7,6 @@ import { generateRandomString } from '../../utils/js/generateRandomIndex'
 export function CardsList() {
   const { postData = [] } = useContext(postContext);
 
-  //TODO вместо индекс - случайную строку из функции
   const postsList = postData.map((post) => {
     const { data } = post;
     const id = generateRandomString();

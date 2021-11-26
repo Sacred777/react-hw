@@ -8,27 +8,20 @@ interface IPostData {
 
 export function usePostData() {
   const [data, setData] = useState<IPostData>({});
+  const token = useContext(tokenContext);
 
   useEffect(() => {
-    axios.get('https:/www.reddit.com/r/popular/best.json?limit=7&sr_detail=true')
-        .then((resp) => {
-        const postData = resp.data.data.children;
-        // console.log('postData');
-        // console.log(postData);
-        setData({postData});
-        // const myArr = postData.data.children[0];
-        // console.log(myArr.data.author);
-        // console.log(myArr.data.title);
-        // console.log(myArr.data.score);
-        // console.log(myArr.data.thumbnail);
-        // console.log(myArr.data.created);
-        // console.log(myArr.data.id);
-        // console.log(myArr.data.icon_img);
+    if (token !== 'undefined' && token) {
+      axios.get('https:/oauth.reddit.com/r/popular/best.json?limit=7&sr_detail=true', {
+        headers: {Authorization: `bearer ${token}`}
       })
-      .catch(console.log);
-
-    // console.log('usePostData');
-  }, [])
+          .then((resp) => {
+            const postData = resp.data.data.children;
+            setData({postData});
+          })
+          .catch(console.log);
+   }
+  }, [token])
 
   return [data];
 }
