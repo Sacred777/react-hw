@@ -34,7 +34,8 @@ export function Card({ itemData }: ICardProps) {
     sr_detail,
 }: IItemData = itemData;
 
-  const { icon_img }: ISr_detail = sr_detail ? sr_detail: '';
+  let { icon_img }: ISr_detail = sr_detail ? sr_detail: '';
+  if (!icon_img) icon_img='https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png'
 
   return (
     <li className={styles.card}>

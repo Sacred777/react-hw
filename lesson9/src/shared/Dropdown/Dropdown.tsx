@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './dropdown.css';
+import {Portal} from "../Portal";
+import * as events from "events";
 
 interface IDropdownProps {
   button: React.ReactNode;
@@ -17,23 +19,32 @@ export function Dropdown( {button, children, isOpen, onOpen = NOOP, onClose = NO
   React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
   React.useEffect(() => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen]);
 
-  const handleOpen = () => {
+  const [style, setStyle] = React.useState({});
+
+  const handleOpen = (event: React.MouseEvent) => {
     if (isOpen === undefined) {
-      setIsDropdownOpen(!isDropdownOpen)
-    };
+      setIsDropdownOpen(!isDropdownOpen);
+      setStyle( {
+        top: event.pageY + 20 + 'px',
+        left: event.pageX + 'px',
+      });
+    }
   };
 
   return (
+
     <div className={styles.container}>
       <div onClick={ handleOpen }>
         { button }
       </div>
       {isDropdownOpen && (
-        <div className={styles.listContainer}>
-          <div className={styles.list} onClick={ () => setIsDropdownOpen(false)}>
-            {children}
+        <Portal>
+          <div className={styles.listContainer} style={style}>
+            <div className={styles.list} onClick={ () => setIsDropdownOpen(false)}>
+              {children}
+            </div>
           </div>
-        </div>
+        </Portal>
       )}
     </div>
   );
