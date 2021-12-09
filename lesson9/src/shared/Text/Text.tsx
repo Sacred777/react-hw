@@ -16,7 +16,7 @@ export enum EColors {
   grey66 = 'grey66',
 }
 
-type TSizes = 28 | 20 | 16 | 14 | 12 | 10;
+export type TSizes = 28 | 20 | 16 | 14 | 12 | 10;
 
 interface ITextProps {
   As?: 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'div';

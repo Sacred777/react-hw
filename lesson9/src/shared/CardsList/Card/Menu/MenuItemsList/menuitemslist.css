@@ -2,6 +2,15 @@
   padding: 0 20px;
 }
 
+.menuItemsListHorizontal {
+  display: inline-flex;
+  padding: 0;
+}
+
+.menuItemsListHorizontal li:not(:last-child) {
+  margin-right: 28px;
+}
+
 .menuItem {
   padding: 12px 0;
   display: flex;
@@ -15,6 +24,10 @@
 
 .menuItem span:first-child {
   margin-right: 6px;
+}
+
+.menuItem:hover {
+  cursor: pointer;
 }
 
 .divider {

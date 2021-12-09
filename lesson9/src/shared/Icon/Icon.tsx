@@ -1,7 +1,26 @@
 import React from 'react';
 import styles from './icon.css';
 import classNames from 'classnames';
-import { MenuIcon, BlockIcon, CommentIcon, SaveIcon, ShareIcon, WarningIcon } from '../../shared/Icons';
+import {
+  MenuIcon,
+  BlockIcon,
+  CommentIcon,
+  SaveIcon,
+  ShareIcon,
+  WarningIcon,
+  AudioIcon,
+  CodeIcon,
+  DocumentIcon,
+  LinkIcon,
+  ParagraphIcon,
+  PdfIcon,
+  PenIcon,
+  PeopleIcon,
+  PictureIcon,
+  QuoteIcon,
+  UpdateIcon,
+  UploadIcon, ArrowUpIcon, ArrowDownIcon
+} from '../../shared/Icons';
 
 const icons = {
   menu:    MenuIcon,
@@ -10,6 +29,20 @@ const icons = {
   save:    SaveIcon,
   share:   ShareIcon,
   warning: WarningIcon,
+  audio: AudioIcon,
+  code: CodeIcon,
+  document: DocumentIcon,
+  link: LinkIcon,
+  paragraph: ParagraphIcon,
+  pdf: PdfIcon,
+  pen: PenIcon,
+  people: PeopleIcon,
+  picture: PictureIcon,
+  quote: QuoteIcon,
+  update: UpdateIcon,
+  upload: UploadIcon,
+  arrowUp: ArrowUpIcon,
+  arrowDown: ArrowDownIcon,
 }
 
 export enum EIcons {
@@ -19,9 +52,23 @@ export enum EIcons {
   save    = 'save',
   share   = 'share',
   warning = 'warning',
+  audio   = 'audio',
+  code    = 'code',
+  document = 'document',
+  link    = 'link',
+  paragraph = 'paragraph',
+  pdf     = 'pdf',
+  pen     = 'pen',
+  people  = 'people',
+  picture = 'picture',
+  quote   = 'quote',
+  update  = 'update',
+  upload  = 'upload',
+  arrowUp = 'arrowUp',
+  arrowDown = 'arrowDown',
 }
 
-type TSizes = 20 | 16 | 14 | 12| 10;
+export type TSizes = 20 | 18 | 16 | 14 | 12| 10;
 
 interface IIconProps {
   name: EIcons;

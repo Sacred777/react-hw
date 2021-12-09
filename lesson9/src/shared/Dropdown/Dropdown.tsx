@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './dropdown.css';
 import {Portal} from "../Portal";
-import * as events from "events";
 
 interface IDropdownProps {
   button: React.ReactNode;

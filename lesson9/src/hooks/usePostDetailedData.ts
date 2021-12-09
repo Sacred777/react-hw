@@ -5,6 +5,13 @@ import { tokenContext } from '../shared/context/tokenContext';
 interface IPostDetailedData {
   postCardData?: [];
   // author?: string;
+  author?: string;
+  title?: string;
+  selftext?: string;
+  score?: string;
+  created_utc?: string;
+  icon?: string;
+  subreddit?: string;
 }
 
 export function usePostDetailedData(permalink: string) {
@@ -19,8 +26,8 @@ export function usePostDetailedData(permalink: string) {
           .then((resp) => {
             const postDetailedData = resp.data[0].data.children[0].data;
             setData(postDetailedData);
-            console.log('usePostDetailedData');
-            console.log(postDetailedData.author);
+            // console.log('usePostDetailedData');
+            // console.log(postDetailedData.author);
           })
           .catch(console.log);
     }
