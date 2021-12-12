@@ -44,6 +44,7 @@ export function Post( props: IPost) {
     subreddit,
   }: IPostData = postDetailedData;
 
+    icon = 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png'
   // console.log('Post.tsx');
   // console.log(author);
   // console.log(title);
