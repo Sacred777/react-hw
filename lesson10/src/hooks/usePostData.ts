@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { tokenContext } from '../shared/context/tokenContext';
+import {useSelector} from "react-redux";
+import {RootState} from "../store";
 
 interface IPostData {
   postData?: [];
@@ -8,7 +9,7 @@ interface IPostData {
 
 export function usePostData() {
   const [data, setData] = useState<IPostData>({});
-  const token = useContext(tokenContext);
+  const token = useSelector<RootState, string>(state => state.token);
 
   useEffect(() => {
     if (token !== 'undefined' && token) {

@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { tokenContext } from '../shared/context/tokenContext';
+import {useSelector} from "react-redux";
+import {RootState} from "../store";
 
 interface IPostDetailedData {
   postCardData?: [];
-  // author?: string;
   author?: string;
   title?: string;
   selftext?: string;
@@ -16,7 +16,7 @@ interface IPostDetailedData {
 
 export function usePostDetailedData(permalink: string) {
   const [data, setData] = useState<IPostDetailedData>({});
-  const token = useContext(tokenContext);
+  const token = useSelector<RootState, string>(state => state.token);
 
   useEffect(() => {
     if (token !== 'undefined' && token) {
@@ -26,8 +26,6 @@ export function usePostDetailedData(permalink: string) {
           .then((resp) => {
             const postDetailedData = resp.data[0].data.children[0].data;
             setData(postDetailedData);
-            // console.log('usePostDetailedData');
-            // console.log(postDetailedData.author);
           })
           .catch(console.log);
     }
