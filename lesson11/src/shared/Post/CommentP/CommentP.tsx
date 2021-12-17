@@ -1,14 +1,16 @@
-import React, {ChangeEvent, FormEvent, useContext, useEffect, useRef, useState} from 'react';
+import React, {FormEvent, useEffect, useRef, useState} from 'react';
 import styles from './commentp.css';
 import {Break} from "../../Break";
 import {EIcons, Icon} from "../../Icon";
 import {EColors, Text} from "../../Text";
 import {MenuItemsList} from "../../CardsList/Card/Menu/MenuItemsList";
 import {CommentActions} from "../CommentActions";
-import {userContext} from "../../context/userContext";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store/reducer";
+import {IUserData} from "../../../store/me/actions";
 
 export function CommentP() {
-  const { name } = useContext(userContext);
+  const { name } = useSelector<RootState, IUserData>(state => state.me.data);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const ref = useRef<HTMLTextAreaElement>(null)
 

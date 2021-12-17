@@ -38,7 +38,7 @@ export function Card({ itemData }: ICardProps) {
 
   let { icon_img }: ISr_detail = sr_detail ? sr_detail: '';
   if (!icon_img) icon_img = 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png';
-  console.log(thumbnail);
+  // console.log(thumbnail);
   if (!thumbnail?.includes('https')) thumbnail = 'https://cdn.dribbble.com/users/3320958/screenshots/16630030/media/11a3ea5ba5ea7b0250cf4bc95cf0d180.jpeg?compress=1&resize=1200x900';
 
   return (

@@ -1,14 +1,16 @@
-import React, {ChangeEvent, FormEvent, useContext, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useEffect, useRef, useState} from 'react';
 import styles from './comment.css';
 import {Break} from "../../Break";
 import {EIcons, Icon} from "../../Icon";
 import {EColors, Text} from "../../Text";
 import {MenuItemsList} from "../../CardsList/Card/Menu/MenuItemsList";
 import {CommentActions} from "../CommentActions";
-import {userContext} from "../../context/userContext";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store/reducer";
+import {IUserData} from "../../../store/me/actions";
 
 export function Comment() {
-  const { name } = useContext(userContext);
+  const { name } = useSelector<RootState, IUserData>(state => state.me.data);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const [value, setValue] = useState(name + ' ');
 

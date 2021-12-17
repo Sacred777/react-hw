@@ -57,6 +57,6 @@
     "react-tinder-card": "^1.4.0",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.4.1"
   }
 }

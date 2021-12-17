@@ -1,24 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './layout.css';
-import {useDispatch} from "react-redux";
-import {setToken} from "../../store";
 
 interface ILayoutProps {
   children?: React.ReactNode;
 }
 
-export function Layout({ children }: ILayoutProps) {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-      if (window.__token__) {
-        dispatch(setToken(window.__token__));
-      }
-  }, [])
+export function Layout({children}: ILayoutProps) {
 
   return (
-    <div className={styles.layout}>
-      { children }
-    </div>
+      <div className={styles.layout}>
+        {children}
+      </div>
   );
 }
