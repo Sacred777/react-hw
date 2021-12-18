@@ -7,7 +7,9 @@ import {
   MeRequestAction, MeRequestErrorAction,
   MeRequestSuccessAction
 } from "./me/actions";
-import {meReducer, MeState} from "./me/reducer";
+import {MeActions, meReducer, MeState} from "./me/reducer";
+import {SET_TOKEN, SetTokenAction} from "./token/actions";
+import {tokenReducer} from "./token/reducer";
 
 export type RootState = {
   token: string;
@@ -23,26 +25,14 @@ const initialState: RootState = {
   },
 }
 
-const SET_TOKEN = 'SET_TOKEN';
-type SetTokenAction = {
-  type: typeof SET_TOKEN;
-  token: string;
-}
-export const setToken: ActionCreator<SetTokenAction> = (token: string) => ({
-  type: SET_TOKEN,
-  token,
-});
-
 type MyAction = SetTokenAction
-    | MeRequestAction
-    | MeRequestSuccessAction
-    | MeRequestErrorAction;
+    | MeActions;
 export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, action) => {
   switch (action.type) {
     case SET_TOKEN:
       return {
         ...state,
-        token: action.token,
+        token: tokenReducer(state.token, action),
       };
     case ME_REQUEST:
     case ME_REQUEST_SUCCESS:

@@ -15,7 +15,7 @@ export type MeState = {
   data: IUserData;
 }
 
-type MeActions = MeRequestAction
+export type MeActions = MeRequestAction
     | MeRequestSuccessAction
     | MeRequestErrorAction;
 

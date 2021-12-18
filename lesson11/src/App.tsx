@@ -10,8 +10,9 @@ import {PostContextProvider} from './shared/context/postContext'
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
-import {rootReducer, setToken} from "./store/reducer";
+import {rootReducer} from "./store/reducer";
 import thunk from "redux-thunk";
+import {saveToken} from "./store/token/actions";
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(thunk)
@@ -19,8 +20,8 @@ const store = createStore(rootReducer, composeWithDevTools(
 
 function AppComponent() {
   useEffect(() => {
-    const token = window.__token__;
-    store.dispatch(setToken(token));
+
+    store.dispatch(saveToken());
   }, []);
 
   return (
