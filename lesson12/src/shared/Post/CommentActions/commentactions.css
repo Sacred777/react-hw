@@ -1,0 +1,12 @@
+.actionsList {
+  display: flex;
+  align-items: center;
+}
+
+.actionsItems:hover {
+  cursor: pointer;
+}
+
+.actionsItems:not(:last-child) {
+  margin-right: 28px;
+}
