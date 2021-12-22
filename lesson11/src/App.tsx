@@ -10,17 +10,16 @@ import {PostContextProvider} from './shared/context/postContext'
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
-import {rootReducer} from "./store/reducer";
-import thunk from "redux-thunk";
+import {RootAction, rootReducer, RootState} from "./store/reducer";
+import thunk, {ThunkMiddleware} from "redux-thunk";
 import {saveToken} from "./store/token/actions";
 
 const store = createStore(rootReducer, composeWithDevTools(
-  applyMiddleware(thunk)
+  applyMiddleware(thunk as ThunkMiddleware<RootState, RootAction>)
 ));
 
 function AppComponent() {
   useEffect(() => {
-
     store.dispatch(saveToken());
   }, []);
 

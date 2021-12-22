@@ -1,12 +1,5 @@
-import {ActionCreator, AnyAction, Reducer} from "redux";
-import {
-  ME_REQUEST,
-  ME_REQUEST_ERROR,
-  ME_REQUEST_SUCCESS,
-  meRequest,
-  MeRequestAction, MeRequestErrorAction,
-  MeRequestSuccessAction
-} from "./me/actions";
+import {Reducer} from "redux";
+import {ME_REQUEST, ME_REQUEST_ERROR, ME_REQUEST_SUCCESS} from "./me/actions";
 import {MeActions, meReducer, MeState} from "./me/reducer";
 import {SET_TOKEN, SetTokenAction} from "./token/actions";
 import {tokenReducer} from "./token/reducer";
@@ -25,9 +18,9 @@ const initialState: RootState = {
   },
 }
 
-type MyAction = SetTokenAction
+export type RootAction = SetTokenAction
     | MeActions;
-export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, action) => {
+export const rootReducer: Reducer<RootState, RootAction> = (state = initialState, action) => {
   switch (action.type) {
     case SET_TOKEN:
       return {
