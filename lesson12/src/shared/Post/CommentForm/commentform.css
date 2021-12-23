@@ -12,6 +12,10 @@
   line-height: 19px;
 }
 
+.commentField[aria-invalid] {
+  border: 1px solid red;
+}
+
 .commentField span {
   color: var(--grey99);
 }
@@ -37,4 +41,9 @@ span.name {
   color: var(--white);
   background-color: var(--orange);
   border-radius: 0 0 3px 0;
+}
+
+.commentButton:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
