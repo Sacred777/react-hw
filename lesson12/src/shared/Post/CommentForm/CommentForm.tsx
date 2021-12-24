@@ -1,44 +1,50 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
 import styles from './commentform.css';
 import {CommentActions} from "../CommentActions";
+import {useForm} from "react-hook-form";
+
+type TFormValues = {
+  textArea: string;
+}
 
 export function CommentForm() {
   const [value, setValue] = useState('');
-  const [touched, setTouched] = useState(false);
-  const [valueError, setValueError] = useState('');
 
-  function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    setTouched(true);
+  const {
+    register,
+    handleSubmit,
+    formState: {
+      errors,
+    }
+  } = useForm<TFormValues>(
+      {
+        reValidateMode: 'onSubmit',
+      }
+  );
 
-    setValueError(validateValue());
-
-    const isFormValid = !validateValue();
-    if (!isFormValid) return;
-    console.log(value);
-  }
+  const onSubmit = (data: TFormValues) => console.log(data.textArea);
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setValue(event.target.value);
-  }
-
-  function validateValue() {
-    if (value.length <= 3) return 'Введите больше 3-х символов';
-    return '';
+    // console.log(value)
   }
 
   return (
-    <form name='comment' onSubmit={handleSubmit}>
+    <form name='comment' onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.fieldWrapper}>
         <textarea
             className={styles.commentField}
-            value={value}
-            onChange={handleChange}
-            aria-invalid={valueError ? 'true' : undefined}
+            {...register('textArea', {
+              required: 'Введите больше 3-х символов',
+              minLength: {
+                value: 4,
+                message: 'Введите больше 3-х символов',
+              },
+              onChange: (event) => handleChange(event),
+            })}
         >
         </textarea>
-        {/*{errors?.commentText && <div>{errors?.commentText?.message || 'Ошибка валидации'}</div>}*/}
-        {touched && valueError && (<div>{valueError}</div>)}
+        {errors?.textArea && <div>{errors?.textArea?.message || 'Ошибка валидации'}</div>}
       </div>
       <div className={styles.commentFooter}>
         <CommentActions size={18}/>
