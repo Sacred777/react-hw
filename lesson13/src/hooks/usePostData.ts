@@ -12,7 +12,7 @@ export function usePostData() {
   const token = useSelector<RootState, string>(state => state.token);
 
   useEffect(() => {
-    if (token !== 'undefined' && token) {
+    if (!token || token === 'undefined') return;
       axios.get('https:/oauth.reddit.com/r/popular/best.json?limit=7&sr_detail=true', {
         headers: {Authorization: `bearer ${token}`}
       })
@@ -21,7 +21,6 @@ export function usePostData() {
             setData({postData});
           })
           .catch(console.log);
-   }
   }, [token])
 
   return [data];
