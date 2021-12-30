@@ -12,7 +12,9 @@ export function CardsList() {
   const [loading, setLoading] = useState(false);
   const [errorLoading, setErrorLoading] = useState('');
   const [nextAfter, setNextAfter] = useState((''));
-  const [loadingCount, setLoadingCount] = useState(2);
+  const LOADING_COUNT = 2;
+  const [currentLoadingCount, setCurrentLoadingCount] = useState(LOADING_COUNT);
+  
 
   const bottomOfList = useRef<HTMLDivElement>(null);
 
@@ -34,7 +36,7 @@ export function CardsList() {
 
         setNextAfter(after);
         setPosts(prevChildren => prevChildren.concat(...children));
-        setLoadingCount(prevLoadingCount => --prevLoadingCount);
+        setCurrentLoadingCount(prevCurrentLoadingCount => --prevCurrentLoadingCount);
       } catch (error) {
         setErrorLoading(String(error));
       }
@@ -43,7 +45,7 @@ export function CardsList() {
     }
 
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && loadingCount) {
+      if (entries[0].isIntersecting && currentLoadingCount) {
         load();
       }
     }, {
@@ -59,10 +61,10 @@ export function CardsList() {
         observer.unobserve(bottomOfList.current);
       }
     }
-  }, [bottomOfList.current, nextAfter, token, loadingCount]);
+  }, [bottomOfList.current, nextAfter, token, currentLoadingCount]);
 
   function handleClick() {
-    setLoadingCount(2);
+    setCurrentLoadingCount(LOADING_COUNT);
   }
 
   return (
@@ -88,7 +90,7 @@ export function CardsList() {
            </div>
         )}
 
-        {!loadingCount && (
+        {!currentLoadingCount && (
           <div style={{padding: "20px 0"}}>
             <button className={styles.button} type={"submit"} onClick={handleClick}>Загрузить ещё</button>
           </div>
