@@ -15,7 +15,7 @@ export function Portal({ children, root, className}: IPortal ) {
     const target = root && root.appendChild ? root : document.body;
     const classList = ['portal'];
 
-    // TODO для складывания классов использовать унилиту
+    // TODO для складывания классов использовать утилиту
     if (className) {
       className.split(' ').forEach(cn => classList.push(cn));
     }

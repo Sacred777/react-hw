@@ -16,6 +16,7 @@ import {saveToken} from "./store/token/actions";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {NotFoundPage} from "./shared/NotFoundPage";
 import {Post} from "./shared/Post";
+import {Portal} from "./shared/Portal";
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(thunk as ThunkMiddleware<RootState, RootAction>)
@@ -42,8 +43,16 @@ function AppComponent() {
               <Header/>
               <Routes>
                 <Route path="/" element={<Navigate to="/posts" replace/>}/>
-                <Route path="/posts" element={<Content><CardsList/></Content>}/>
-                <Route path="/posts/:id" element={<Post />} />
+                <Route path="/posts" element={
+                  <Content>
+                    <CardsList/>
+                  </Content>
+                }/>
+                <Route path="/posts/:id" element={
+                  <Portal>
+                    <Post/>
+                  </Portal>
+                } />
                 <Route path="/auth" element={<Navigate to="/posts" replace/>}/>
                 <Route path="*" element={<NotFoundPage/>}/>
               </Routes>

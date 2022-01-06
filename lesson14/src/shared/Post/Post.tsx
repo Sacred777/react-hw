@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent} from 'react';
+import React, {ChangeEvent, FormEvent, useEffect, useRef, useState} from 'react';
 import styles from './post.css';
 import {KarmaCounter} from "../CardsList/Card/Controls/KarmaCounter";
 import {usePostDetailedData} from "../../hooks/usePostDetailedData";
@@ -13,11 +13,12 @@ import {Break} from "../Break";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store/reducer";
 import {updateComment} from "../../store/comment/actions";
+import {useNavigate, useParams} from "react-router-dom";
 
-interface IPost {
-  permalink?: string;
-  onClose?: () => void;
-}
+// interface IPost {
+//   permalink?: string;
+//   onClose?: () => void;
+// }
 
 interface IPostData {
   author?: string;
@@ -29,11 +30,33 @@ interface IPostData {
   subreddit?: string;
 }
 
-export function Post(props: IPost) {
-  const [ref] = useHandlerOnEvent(props.onClose);
-  const [postDetailedData] = props.permalink ? usePostDetailedData(props.permalink.replace(/\/$/, '.json')) : [];
+export function Post() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { id } = useParams();
+  const permalink = `/comments/${id}.json`
+  // const [ref] = useHandlerOnEvent(props.onClose);
+  // const [postDetailedData] = props.permalink ? usePostDetailedData(props.permalink.replace(/\/$/, '.json')) : [];
   const value = useSelector<RootState, string>(state => state.comment);
   const dispatch = useDispatch();
+  // const permalink = '/r/AskReddit/comments/rx43r9/what_science_fiction_or_fantasy_show_is_worth/'
+  const navigate = useNavigate();
+  const goBack = () => navigate('/posts');
+
+  const [postDetailedData] = usePostDetailedData(permalink.replace(/\/$/, '.json'));
+
+  useEffect(() => {
+    function handleClick(event: MouseEvent) {
+      if (event.target instanceof Node && !ref.current?.contains(event.target)) {
+        goBack();
+      }
+    }
+
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+    }
+  }, [])
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     dispatch(updateComment(event.target.value))
@@ -60,7 +83,7 @@ export function Post(props: IPost) {
 
   return (
       <div className={styles.modalContainer} ref={ref}>
-        <button className={styles.closeButton} onClick={props.onClose}>
+        <button className={styles.closeButton} onClick={goBack}>
           <CloseWindowIcon/>
         </button>
 
@@ -88,11 +111,7 @@ export function Post(props: IPost) {
           <Text size={14} color={EColors.grey99}>54% Проголосовали</Text>
         </div>
 
-        <CommentForm
-        //     value={value}
-        //     onChange={handleChange}
-        //     onSubmit={handleSubmit}
-        />
+        <CommentForm />
         <Break size={35} top={true}/>
         <Comments/>
 

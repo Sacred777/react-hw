@@ -18,6 +18,7 @@ interface IItemData {
   created_utc?: string;
   sr_detail?: {};
   permalink?: string;
+  id?: string;
 }
 
 interface ISr_detail {
@@ -34,6 +35,7 @@ export function Card({ itemData }: ICardProps) {
     created_utc,
     sr_detail,
     permalink,
+    id,
 }: IItemData = itemData;
 
   let { icon_img }: ISr_detail = sr_detail ? sr_detail: '';
@@ -43,7 +45,7 @@ export function Card({ itemData }: ICardProps) {
 
   return (
     <li className={styles.card}>
-      <TextCounter author={author} created_utc={created_utc} title={title} icon={icon_img} permalink={permalink}/>
+      <TextCounter author={author} created_utc={created_utc} title={title} icon={icon_img} permalink={permalink} id={id}/>
       <Preview thumbnail={thumbnail}/>
       <Menu />
       <Controls score={score}/>
