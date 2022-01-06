@@ -51,6 +51,6 @@ g            </Layout>
       )}
     </Provider>
   );
-};
+}
 
 export const App = hot(() => <AppComponent/>); // это для HMR
