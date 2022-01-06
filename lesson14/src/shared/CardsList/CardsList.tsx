@@ -5,6 +5,7 @@ import axios from "axios";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store/reducer";
 import {Text} from "../Text";
+import {generateRandomString} from "../../utils/js/generateRandomIndex";
 
 export function CardsList() {
   const token = useSelector<RootState, string>(state => state.token);
@@ -77,7 +78,7 @@ export function CardsList() {
 
         {posts.map(post => (
             <Card
-                key={post.data.id}
+                key={generateRandomString()}
                 itemData={post.data}
             />
         ))}

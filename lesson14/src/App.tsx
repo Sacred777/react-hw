@@ -15,6 +15,7 @@ import thunk, {ThunkMiddleware} from "redux-thunk";
 import {saveToken} from "./store/token/actions";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {NotFoundPage} from "./shared/NotFoundPage";
+import {Post} from "./shared/Post";
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(thunk as ThunkMiddleware<RootState, RootAction>)
@@ -42,10 +43,11 @@ function AppComponent() {
               <Routes>
                 <Route path="/" element={<Navigate to="/posts" replace/>}/>
                 <Route path="/posts" element={<Content><CardsList/></Content>}/>
+                <Route path="/posts/:id" element={<Post />} />
                 <Route path="/auth" element={<Navigate to="/posts" replace/>}/>
                 <Route path="*" element={<NotFoundPage/>}/>
               </Routes>
-g            </Layout>
+            </Layout>
           </PostContextProvider>
         </BrowserRouter>
       )}
