@@ -20,7 +20,7 @@ export function CardsList() {
 
   useEffect(() => {
     async function load() {
-      if (!token || token === 'undefined') return;
+      // if (!token || token === 'undefined') return;
 
       setLoading(true);
       setErrorLoading('');

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import './main.global.css';
 import {hot} from "react-hot-loader/root";
 import {Header} from './shared/Header';
@@ -13,18 +13,28 @@ import {Provider} from "react-redux";
 import {RootAction, rootReducer, RootState} from "./store/reducer";
 import thunk, {ThunkMiddleware} from "redux-thunk";
 import {saveToken} from "./store/token/actions";
+import {BrowserRouter} from "react-router-dom";
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(thunk as ThunkMiddleware<RootState, RootAction>)
 ));
 
 function AppComponent() {
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
   useEffect(() => {
     store.dispatch(saveToken());
   }, []);
 
   return (
-      <Provider store={store}>
+    <Provider store={store}>
+      {mounted && (
+        <BrowserRouter>
           <PostContextProvider>
             <Layout>
               <Header/>
@@ -33,7 +43,9 @@ function AppComponent() {
               </Content>
             </Layout>
           </PostContextProvider>
-      </Provider>
+        </BrowserRouter>
+      )}
+    </Provider>
   );
 };
 
