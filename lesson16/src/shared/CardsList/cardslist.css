@@ -1,0 +1,17 @@
+.button {
+  display: block;
+  margin: 0 auto;
+  padding: 17px 49px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--white);
+  background-color: #CC6633;
+}
+
+@media all and (min-width: 1024px) {
+  .cardsList {
+    padding: 40px 0;
+  }
+}

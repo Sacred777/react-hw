@@ -1,0 +1,49 @@
+.fieldWrapper {
+  border: 1px solid var(--greyD9);
+  border-radius: 3px 3px 0px 0px;
+}
+
+.commentField {
+  padding: 16px 18px;
+  width: 100%;
+  height: 90px;
+  border: none;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.commentField[aria-invalid] {
+  border: 1px solid red;
+}
+
+.commentField span {
+  color: var(--grey99);
+}
+
+span.name {
+  color: var(--orange);
+}
+
+.commentFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 19px;
+  background-color: #e5e5e5;
+  border-radius: 0 0 3px 3px;
+}
+
+.commentButton {
+  padding: 17px 50px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--white);
+  background-color: var(--orange);
+  border-radius: 0 0 3px 0;
+}
+
+.commentButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
