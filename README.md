@@ -1,2 +1,2 @@
-First ptoject on React
+My React JS homework tasks
 
